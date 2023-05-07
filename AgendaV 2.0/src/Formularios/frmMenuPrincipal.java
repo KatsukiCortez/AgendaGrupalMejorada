@@ -5,6 +5,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
     public frmMenuPrincipal() {
         initComponents();
+        this.setLocationRelativeTo(null); // Esta linea de codigo es para que la pantalla aparesca en el medio
         //Centrar formulario
         setLocationRelativeTo(null);    
     }
@@ -17,10 +18,15 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnRegistrar = new javax.swing.JButton();
         btnFiltro = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("bienvenidos");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Bienvenidos");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 320, -1));
 
         btnRegistrar.setText("registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -28,6 +34,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 btnRegistrarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, -1));
 
         btnFiltro.setText("filtro");
         btnFiltro.addActionListener(new java.awt.event.ActionListener() {
@@ -35,6 +42,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 btnFiltroActionPerformed(evt);
             }
         });
+        getContentPane().add(btnFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 81, -1));
 
         btnSalir.setText("salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -42,37 +50,10 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 81, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnFiltro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRegistrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(196, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(btnRegistrar)
-                .addGap(18, 18, 18)
-                .addComponent(btnFiltro)
-                .addGap(18, 18, 18)
-                .addComponent(btnSalir)
-                .addContainerGap(47, Short.MAX_VALUE))
-        );
+        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/book-agenda-table-notes.jpg"))); // NOI18N
+        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 320));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -136,5 +117,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelFondo;
     // End of variables declaration//GEN-END:variables
 }
