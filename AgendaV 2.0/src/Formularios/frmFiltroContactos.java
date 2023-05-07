@@ -7,7 +7,7 @@ package Formularios;
 
 import javax.swing.table.DefaultTableModel;
 import java.awt.HeadlessException;
-import persistencia.cConnection;
+import Persistencia.cConnection;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -140,12 +140,12 @@ public class frmFiltroContactos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnMujeres)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnMujeres, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnVarones))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLimpiar)
                     .addComponent(tbnRegresar)
@@ -164,7 +164,7 @@ public class frmFiltroContactos extends javax.swing.JFrame {
             cConnection conectando = new cConnection(); //llama la clase cConnection
             conex = conectando.getConnection();//retorna conexion
             String Registro[] = new String[10]; //aca el numero lo modificas segun la cantidad de columnas
-            String SQL = "Select * from datos where Genero = 'M' "; //sentencia sql para llamar los registros
+            String SQL = "Select * from datos where Genero = 'M'"; //sentencia sql para llamar los registros
             Statement sentencia = conex.createStatement(); //crea la sentencia sql
             ResultSet rst = sentencia.executeQuery(SQL); //ejecuta la consulta de la sentencia sql
             while(rst.next()){
@@ -193,7 +193,7 @@ public class frmFiltroContactos extends javax.swing.JFrame {
             cConnection conectando = new cConnection(); //llama la clase cConnection
             conex = conectando.getConnection();//retorna conexion
             String Registro[] = new String[10]; //aca el numero lo modificas segun la cantidad de columnas
-            String SQL = "Select * from datos where Genero = 'F' "; //sentencia sql para llamar los registros
+            String SQL = "Select * from datos where Genero = 'F'"; //sentencia sql para llamar los registros
             Statement sentencia = conex.createStatement(); //crea la sentencia sql
             ResultSet rst = sentencia.executeQuery(SQL); //ejecuta la consulta de la sentencia sql
             while(rst.next()){
