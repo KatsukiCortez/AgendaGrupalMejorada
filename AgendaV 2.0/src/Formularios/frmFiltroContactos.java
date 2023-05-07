@@ -26,7 +26,8 @@ public class frmFiltroContactos extends javax.swing.JFrame {
     public frmFiltroContactos() {
         initComponents();
         setLocationRelativeTo(null); //Para que aparezca en centro de la pantalla
-        MostrarDatos();
+        MostrarDatos(); //llama la funcion MostrarDatos
+        MostrarRegistroTabla(); //llama la funcion MostrarRegistroTabla
     }
 
     /**
@@ -46,6 +47,7 @@ public class frmFiltroContactos extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JButton();
         tbnRegresar = new javax.swing.JButton();
+        btnMostrarTodo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,34 +96,41 @@ public class frmFiltroContactos extends javax.swing.JFrame {
             }
         });
 
+        btnMostrarTodo.setText("Mostrar todos los datos");
+        btnMostrarTodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarTodoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnLimpiar)
-                        .addGap(18, 18, 18)
-                        .addComponent(tbnRegresar)
-                        .addGap(55, 55, 55))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnVarones)
-                        .addGap(119, 119, 119)
-                        .addComponent(btnMujeres)
-                        .addGap(294, 294, 294))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnMostrarTodo)
+                .addGap(31, 31, 31)
+                .addComponent(btnLimpiar)
+                .addGap(18, 18, 18)
+                .addComponent(tbnRegresar)
+                .addGap(55, 55, 55))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(255, 255, 255)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(212, 212, 212)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(btnVarones)
+                        .addGap(103, 103, 103)
+                        .addComponent(btnMujeres))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(jLabel2)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -129,9 +138,9 @@ public class frmFiltroContactos extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMujeres)
                     .addComponent(btnVarones))
@@ -140,7 +149,8 @@ public class frmFiltroContactos extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLimpiar)
-                    .addComponent(tbnRegresar))
+                    .addComponent(tbnRegresar)
+                    .addComponent(btnMostrarTodo))
                 .addGap(18, 18, 18))
         );
 
@@ -148,20 +158,76 @@ public class frmFiltroContactos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVaronesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaronesActionPerformed
-        // TODO add your handling code here:
+        Limpiesa();
+        try{
+            Connection conex = null; //llama la conexion
+            DefaultTableModel dTabla = (DefaultTableModel)tblFiltro.getModel();
+            cConnection conectando = new cConnection(); //llama la clase cConnection
+            conex = conectando.getConnection();//retorna conexion
+            String Registro[] = new String[10]; //aca el numero lo modificas segun la cantidad de columnas
+            String SQL = "Select * from datos where Genero = 'M' "; //sentencia sql para llamar los registros
+            Statement sentencia = conex.createStatement(); //crea la sentencia sql
+            ResultSet rst = sentencia.executeQuery(SQL); //ejecuta la consulta de la sentencia sql
+            while(rst.next()){
+                Registro[0] = rst.getString("DNI"); //el numero y el nombre que esta en tu BD, en este caso access, se comienza desde cero
+                Registro[1] = rst.getString("Nombre"); 
+                Registro[2] = rst.getString("ApellidoPaterno");
+                Registro[3] = rst.getString("ApellidoMaterno");
+                Registro[4] = rst.getString("Genero"); 
+                Registro[5] = rst.getString("Telefono");
+                Registro[6] = rst.getString("Correo");
+                Registro[7] = rst.getString("FechaNacimiento");
+                Registro[8] = rst.getString("Direccion");
+                dTabla.addRow(Registro); //Agrega a cada columna
+            }
+            tblFiltro.setModel(dTabla); //para llamar nuestra tabla
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Se ha producido un error al cargar los datos - " + e);//mensaje de error y el problema a resolver
+        }
     }//GEN-LAST:event_btnVaronesActionPerformed
 
     private void btnMujeresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMujeresActionPerformed
-        // TODO add your handling code here:
+        Limpiesa();
+        try{
+            Connection conex = null; //llama la conexion
+            DefaultTableModel dTabla = (DefaultTableModel)tblFiltro.getModel();
+            cConnection conectando = new cConnection(); //llama la clase cConnection
+            conex = conectando.getConnection();//retorna conexion
+            String Registro[] = new String[10]; //aca el numero lo modificas segun la cantidad de columnas
+            String SQL = "Select * from datos where Genero = 'F' "; //sentencia sql para llamar los registros
+            Statement sentencia = conex.createStatement(); //crea la sentencia sql
+            ResultSet rst = sentencia.executeQuery(SQL); //ejecuta la consulta de la sentencia sql
+            while(rst.next()){
+                Registro[0] = rst.getString("DNI"); //el numero y el nombre que esta en tu BD, en este caso access, se comienza desde cero
+                Registro[1] = rst.getString("Nombre"); 
+                Registro[2] = rst.getString("ApellidoPaterno");
+                Registro[3] = rst.getString("ApellidoMaterno");
+                Registro[4] = rst.getString("Genero"); 
+                Registro[5] = rst.getString("Telefono");
+                Registro[6] = rst.getString("Correo");
+                Registro[7] = rst.getString("FechaNacimiento");
+                Registro[8] = rst.getString("Direccion");
+                dTabla.addRow(Registro); //Agrega a cada columna
+            }
+            tblFiltro.setModel(dTabla); //para llamar nuestra tabla
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Se ha producido un error al cargar los datos - " + e);//mensaje de error y el problema a resolver
+        }
     }//GEN-LAST:event_btnMujeresActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        // TODO add your handling code here:
+        Limpiesa();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void tbnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnRegresarActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new frmMenuPrincipal().setVisible(true);
     }//GEN-LAST:event_tbnRegresarActionPerformed
+
+    private void btnMostrarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTodoActionPerformed
+        Limpiesa();
+        Mostrar();
+    }//GEN-LAST:event_btnMostrarTodoActionPerformed
     public void MostrarDatos(){ //Para que no edites los nombre de cada columna de la tabla, si no tienes pereza, editalo tu mismo
         DefaultTableModel MiTabla = (DefaultTableModel)tblFiltro.getModel();
         String EncabezadoTabla[]={"DNI","Nombre","Apellido Paterno","Apellido Materno","Género","Telefono","Correo","Fecha de nacimiento","Dirección"}; //para cambiar los nombres de la tabla que estan por defecto
@@ -170,31 +236,7 @@ public class frmFiltroContactos extends javax.swing.JFrame {
     }
     
     public void MostrarRegistroTabla(){ //Para que muestre los registros
-        try{
-            Connection conex = null; //llama la conexion
-            DefaultTableModel dTabla = (DefaultTableModel)tblFiltro.getModel();
-            cConnection conectando = new cConnection(); //llama la clase cConnection
-            conex = conectando.getConnection();//retorna conexion
-            String Registro[] = new String[9]; //aca el numero lo modificas segun la cantidad de columnas
-            String SQL = "Select * from datos"; //sentencia sql para llamar los registros
-            Statement sentencia = conex.createStatement(); //crea la sentencia sql
-            ResultSet rst = sentencia.executeQuery(SQL); //ejecuta la consulta de la sentencia sql
-            while(rst.next()){
-                Registro[1] = rst.getString("DNI"); //el numero y el nombre que esta en tu BD, en este caso access, se comienza desde cero
-                Registro[2] = rst.getString("Nombre"); 
-                Registro[3] = rst.getString("ApellidoPaterno");
-                Registro[4] = rst.getString("ApellidoMaterno");
-                Registro[5] = rst.getString("Genero"); 
-                Registro[6] = rst.getString("Telefono");
-                Registro[7] = rst.getString("Correo");
-                Registro[8] = rst.getString("FechaNacimiento");
-                Registro[9] = rst.getString("Direccion");
-                dTabla.addRow(Registro); //Agrega a cada columna
-            }
-            tblFiltro.setModel(dTabla); //para llamar nuestra tabla
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Se ha producido un error al cargar los datos - " + e);//mensaje de error y el problema a resolver
-        }
+        Mostrar();
     }
     /**
      * @param args the command line arguments
@@ -230,9 +272,47 @@ public class frmFiltroContactos extends javax.swing.JFrame {
             }
         });
     }
+    private void Limpiesa(){//se encarga de borrar los datos que aparecen en la tabla pero no los datos guardados
+        DefaultTableModel temp = (DefaultTableModel) tblFiltro.getModel();
+        int filas = tblFiltro.getRowCount();
+
+        for (int a = 0; filas > a; a++) {
+            temp.removeRow(0);
+        }
+    }
+    
+    private void Mostrar(){
+        try{
+            Connection conex = null; //llama la conexion
+            DefaultTableModel dTabla = (DefaultTableModel)tblFiltro.getModel();
+            cConnection conectando = new cConnection(); //llama la clase cConnection
+            conex = conectando.getConnection();//retorna conexion
+            String Registro[] = new String[10]; //aca el numero lo modificas segun la cantidad de columnas
+            String SQL = "Select * from datos"; //sentencia sql para llamar los registros
+            Statement sentencia = conex.createStatement(); //crea la sentencia sql
+            ResultSet rst = sentencia.executeQuery(SQL); //ejecuta la consulta de la sentencia sql
+            while(rst.next()){
+                Registro[0] = rst.getString("DNI"); //el numero y el nombre que esta en tu BD, en este caso access, se comienza desde cero
+                Registro[1] = rst.getString("Nombre"); 
+                Registro[2] = rst.getString("ApellidoPaterno");
+                Registro[3] = rst.getString("ApellidoMaterno");
+                Registro[4] = rst.getString("Genero"); 
+                Registro[5] = rst.getString("Telefono");
+                Registro[6] = rst.getString("Correo");
+                Registro[7] = rst.getString("FechaNacimiento");
+                Registro[8] = rst.getString("Direccion");
+                dTabla.addRow(Registro); //Agrega a cada columna
+            }
+            tblFiltro.setModel(dTabla); //para llamar nuestra tabla
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Se ha producido un error al cargar los datos - " + e);//mensaje de error y el problema a resolver
+        }
+    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnMostrarTodo;
     private javax.swing.JButton btnMujeres;
     private javax.swing.JButton btnVarones;
     private javax.swing.JLabel jLabel1;
