@@ -64,23 +64,24 @@ public class frmFiltroContactos extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblFiltro);
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         jLabel1.setText("filtro");
 
-        btnVarones.setText("Varones");
+        btnVarones.setText("Masculino");
         btnVarones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVaronesActionPerformed(evt);
             }
         });
 
-        btnMujeres.setText("Mujeres");
+        btnMujeres.setText("Femenino");
         btnMujeres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMujeresActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Seleccione su metodo de filtrado");
+        jLabel2.setText("Seleccione el género que desea filtrar");
 
         btnLimpiar.setText("Limpiar tabla");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -107,38 +108,36 @@ public class frmFiltroContactos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnMostrarTodo)
-                .addGap(31, 31, 31)
-                .addComponent(btnLimpiar)
-                .addGap(18, 18, 18)
-                .addComponent(tbnRegresar)
-                .addGap(55, 55, 55))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(152, 152, 152)
+                .addComponent(btnVarones)
+                .addGap(192, 192, 192)
+                .addComponent(btnMujeres)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(255, 255, 255)
-                        .addComponent(jLabel1))
+                        .addComponent(btnMostrarTodo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLimpiar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tbnRegresar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel2)
+                        .addGap(246, 246, 246))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(btnVarones)
-                        .addGap(103, 103, 103)
-                        .addComponent(btnMujeres))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(jLabel2)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addGap(323, 323, 323))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -158,7 +157,7 @@ public class frmFiltroContactos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVaronesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaronesActionPerformed
-        Limpiesa();
+        Limpiesa();//limpia la tabla antes de ejecutar el resto de codigo
         try{
             Connection conex = null; //llama la conexion
             DefaultTableModel dTabla = (DefaultTableModel)tblFiltro.getModel();
@@ -187,7 +186,7 @@ public class frmFiltroContactos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVaronesActionPerformed
 
     private void btnMujeresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMujeresActionPerformed
-        Limpiesa();
+        Limpiesa();//limpia la tabla antes de ejecutar el resto de codigo
         try{
             Connection conex = null; //llama la conexion
             DefaultTableModel dTabla = (DefaultTableModel)tblFiltro.getModel();
@@ -216,17 +215,17 @@ public class frmFiltroContactos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMujeresActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        Limpiesa();
+        Limpiesa();//limpia la tabla
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void tbnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnRegresarActionPerformed
-        this.setVisible(false);
-        new frmMenuPrincipal().setVisible(true);
+        this.setVisible(false);//cierra esta ventana
+        new frmMenuPrincipal().setVisible(true);//abre la ventana del menú principal
     }//GEN-LAST:event_tbnRegresarActionPerformed
 
     private void btnMostrarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTodoActionPerformed
-        Limpiesa();
-        Mostrar();
+        Limpiesa();//limpia la tabla antes de ejecutarse el codigo de Mostrar()
+        Mostrar();//muestra todos los datos en la tabla
     }//GEN-LAST:event_btnMostrarTodoActionPerformed
     public void MostrarDatos(){ //Para que no edites los nombre de cada columna de la tabla, si no tienes pereza, editalo tu mismo
         DefaultTableModel MiTabla = (DefaultTableModel)tblFiltro.getModel();
@@ -236,7 +235,7 @@ public class frmFiltroContactos extends javax.swing.JFrame {
     }
     
     public void MostrarRegistroTabla(){ //Para que muestre los registros
-        Mostrar();
+        Mostrar();//muestra todos los datos en la tabla
     }
     /**
      * @param args the command line arguments
@@ -277,7 +276,7 @@ public class frmFiltroContactos extends javax.swing.JFrame {
         int filas = tblFiltro.getRowCount();
 
         for (int a = 0; filas > a; a++) {
-            temp.removeRow(0);
+            temp.removeRow(0);//borra los datos que esten en cada fila de la tabla pero no de la base de datos
         }
     }
     
