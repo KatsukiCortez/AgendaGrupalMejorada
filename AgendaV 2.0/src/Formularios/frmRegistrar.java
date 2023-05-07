@@ -49,7 +49,7 @@ public class frmRegistrar extends javax.swing.JFrame {
         txtFech = new javax.swing.JTextField();
         txtDire = new javax.swing.JTextField();
         txtGen = new javax.swing.JTextField();
-        btnRegMod = new javax.swing.JButton();
+        btnReg = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnmod = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
@@ -142,11 +142,11 @@ public class frmRegistrar extends javax.swing.JFrame {
             }
         });
 
-        btnRegMod.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnRegMod.setText("reg");
-        btnRegMod.addActionListener(new java.awt.event.ActionListener() {
+        btnReg.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnReg.setText("reg");
+        btnReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegModActionPerformed(evt);
+                btnRegActionPerformed(evt);
             }
         });
 
@@ -216,7 +216,7 @@ public class frmRegistrar extends javax.swing.JFrame {
                 .addGap(140, 140, 140))
             .addGroup(layout.createSequentialGroup()
                 .addGap(242, 242, 242)
-                .addComponent(btnRegMod)
+                .addComponent(btnReg)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -276,7 +276,7 @@ public class frmRegistrar extends javax.swing.JFrame {
                                 .addComponent(jLabel8)))))
                 .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegMod)
+                    .addComponent(btnReg)
                     .addComponent(btnEliminar)
                     .addComponent(btnmod))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
@@ -287,7 +287,7 @@ public class frmRegistrar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegModActionPerformed
+    private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
         if(txtDNI.getText().isEmpty() || txtNombre.getText().isEmpty() || txtApPat.getText().isEmpty() || txtApMat.getText().isEmpty()
                 || txtGen.getText().isEmpty() || txtTelf.getText().isEmpty()){ //saber si estan vacios
             JOptionPane.showMessageDialog(this,"Debe rellenar todos los espacios obligatorios"); //mensaje para rellenar espacios obligatorios
@@ -324,7 +324,7 @@ public class frmRegistrar extends javax.swing.JFrame {
             }
         }
         
-    }//GEN-LAST:event_btnRegModActionPerformed
+    }//GEN-LAST:event_btnRegActionPerformed
 
     private void tblDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatosMouseClicked
         //seleccionar registrops de la tabla
@@ -589,7 +589,7 @@ public class frmRegistrar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnRegMod;
+    private javax.swing.JButton btnReg;
     private javax.swing.JButton btnmod;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
