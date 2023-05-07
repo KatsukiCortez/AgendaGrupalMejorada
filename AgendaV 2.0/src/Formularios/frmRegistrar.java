@@ -44,7 +44,13 @@ public class frmRegistrar extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtApPat = new javax.swing.JTextField();
-        txtApMat = new javax.swing.JTextField();
+        try {
+            txtApMat =(javax.swing.JTextField)java.beans.Beans.instantiate(getClass().getClassLoader(), "Formularios.frmRegistrar_txtApMat");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
         txtTelf = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
         txtFech = new javax.swing.JTextField();
@@ -53,6 +59,7 @@ public class frmRegistrar extends javax.swing.JFrame {
         btnRegMod = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnmod = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,24 +82,29 @@ public class frmRegistrar extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblDatos);
 
         txtDNI.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDNIKeyTyped(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel1.setText("DNI");
+        jLabel1.setText("DNI*");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("Nombre");
+        jLabel2.setText("Nombre*");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel3.setText("Apellido Paterno");
+        jLabel3.setText("Apellido Paterno*");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel4.setText("Apellido Materno");
+        jLabel4.setText("Apellido Materno*");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Correo");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel6.setText("Genero");
+        jLabel6.setText("Genero*");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Fecha de Nacimiento");
@@ -101,13 +113,33 @@ public class frmRegistrar extends javax.swing.JFrame {
         jLabel8.setText("Direccion");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel9.setText("Telefono");
+        jLabel9.setText("Telefono*");
 
         txtNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
 
         txtApPat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtApPat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApPatKeyTyped(evt);
+            }
+        });
 
-        txtApMat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtApMat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApMatKeyTyped(evt);
+            }
+        });
+
+        txtTelf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelfKeyTyped(evt);
+            }
+        });
 
         txtCorreo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
@@ -116,6 +148,11 @@ public class frmRegistrar extends javax.swing.JFrame {
         txtDire.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         txtGen.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtGen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtGenKeyTyped(evt);
+            }
+        });
 
         btnRegMod.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnRegMod.setText("reg");
@@ -140,6 +177,9 @@ public class frmRegistrar extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setText("*OBLIGATORIO");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,7 +187,7 @@ public class frmRegistrar extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(40, Short.MAX_VALUE)
+                        .addContainerGap(33, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -167,7 +207,8 @@ public class frmRegistrar extends javax.swing.JFrame {
                             .addComponent(jLabel7)
                             .addComponent(jLabel5)
                             .addComponent(jLabel9)
-                            .addComponent(jLabel8))
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel10))
                         .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtFech)
@@ -213,7 +254,8 @@ public class frmRegistrar extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(txtGen, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtGen, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -253,8 +295,8 @@ public class frmRegistrar extends javax.swing.JFrame {
         if(txtDNI.getText().isEmpty() || txtNombre.getText().isEmpty() || txtApPat.getText().isEmpty() || txtApMat.getText().isEmpty()
                 || txtGen.getText().isEmpty() || txtTelf.getText().isEmpty()){ //saber si estan vacios
             JOptionPane.showMessageDialog(this,"Debe rellenar todos los espacios obligatorios"); //mensaje para rellenar espacios obligatorios
-        }
-        try{
+        } else{
+            try{
             cConnection conectado = new cConnection(); //llama la clase cConnectino
             Connection con = null; //para la variable conectar
             con  = conectado.getConnection(); //llama la conexion
@@ -281,9 +323,11 @@ public class frmRegistrar extends javax.swing.JFrame {
                 MostrarDatos(); //llama funcion de mostrar nombre de columna
                 MostrarRegistroTabla(); //llama funcion de mostrar datos tabla
             }
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Error al guardar los datos - " + e); //mensaje de error de guardado y el problema a resolver
+            } catch(Exception e){
+                JOptionPane.showMessageDialog(null,"Error al guardar los datos - " + e); //mensaje de error de guardado y el problema a resolver
+            }
         }
+        
     }//GEN-LAST:event_btnRegModActionPerformed
 
     private void tblDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatosMouseClicked
@@ -329,7 +373,7 @@ public class frmRegistrar extends javax.swing.JFrame {
                         MostrarRegistroTabla(); //llama la funcion MostrarRegistroTabla
                     }
                 } catch(Exception e){
-                    JOptionPane.showMessageDialog(this,"Ha ocurrido un error al eliminar el tegistro"); //mensaje de error de eliminado y el problema a resolver
+                    JOptionPane.showMessageDialog(this,"Ha ocurrido un error al eliminar el registro"); //mensaje de error de eliminado y el problema a resolver
                 }
             }
         }
@@ -341,37 +385,115 @@ public class frmRegistrar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Para actualizar un registro, debe seleccionarlo primero.");
         } else{
             try{
-                cConnection conectando = new cConnection(); //llama la clase cConnectino
-                Connection con3 = null; //para la variable conectar
-                con3 = conectando.getConnection(); //llama la conexion
-                Statement st = con3.createStatement(); //para crear sentencias
-                //Sentencia SQL para modificar datos
-                String SQLMOdificar = "UPDATE datos SET DNI = ?,Nombre = ?,ApellidoPaterno = ?,ApellidoMaterno = ?,"
-                        + "Genero = ?,Telefono = ?,Correo = ?,FechaNacimiento = ?,Direccion = ? WHERE DNI = ?";
-                PreparedStatement ppt = con3.prepareCall(SQLMOdificar); //llama a SQLEliminar
-                ppt.setInt(9,Integer.parseInt(txtDNI.getText())); //guarda DNI      -   el 9 es la cantidad de columnas
-                ppt.setString(1,txtNombre.getText()); //guarda nombre
-                ppt.setString(2,txtApPat.getText());
-                ppt.setString(3,txtApMat.getText());
-                ppt.setString(4,txtGen.getText());
-                ppt.setString(5,txtTelf.getText());
-                ppt.setString(6,txtCorreo.getText());
-                ppt.setString(7,txtFech.getText());
-                ppt.setString(8,txtDire.getText());
-                int m = ppt.executeUpdate(); //guarda ejecutando la sentencia
-                ppt.close(); //para cerrar PreparedStatement
-
-                if(m>0){ //preguntamos si tiene datos
-                    JOptionPane.showMessageDialog(null,"Datos Guardado Correctamente"); //mensaje de guardado correctamente
-                    Limpiar(); //llama la funcion limpiar
-                    MostrarDatos(); //llama funcion de mostrar nombre de columna
-                    MostrarRegistroTabla(); //llama funcion de mostrar datos tabla
+                Connection con2 = null; //llama la conexion
+                cConnection conectando = new cConnection(); //llama la clase cConnection
+                con2 = conectando.getConnection();//retorna conexion
+                Statement st = con2.createStatement(); //crea una sentencia sql
+                //Sentencia sql para poder modificar la fila seleccionada
+                String SQLModificar = "UPDATE datos SET Nombre=?,ApellidoPaterno=?,ApellidoMaterno=?,Genero=?,Telefono=?,Correo=?,FechaNacimiento=?,Direccion=? WHERE DNI=?";
+                PreparedStatement pst = con2.prepareStatement(SQLModificar); //llamamos nuestra sentencia sql
+                pst.setInt(9,Integer.parseInt(txtDNI.getText())); //guarda lo del campo txtid a la base de datos, el 4 es de la cantidad de columnas
+                pst.setString(1,txtNombre.getText()); //guarda lo del campo txtNombre a la base de datos
+                pst.setString(2,txtApPat.getText());
+                pst.setString(3,txtApMat.getText());
+                pst.setString(4,txtGen.getText());
+                pst.setString(5,txtTelf.getText());
+                pst.setString(6,txtCorreo.getText());
+                pst.setString(7,txtFech.getText());
+                pst.setString(8,txtDire.getText());
+                int s = pst.executeUpdate();
+                pst.close();
+                
+                if(s>0){
+                    JOptionPane.showMessageDialog(this,"Datos actualizados correctamente");
+                    Limpiar(); //para limpiar los casilleros
+                    MostrarDatos(); //para mostrar los nombres de cada columna
+                    MostrarRegistroTabla(); //para mostrar los datos en la tabla
                 }
             } catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Error al modificar los datos - " + e); //mensaje de error de guardado y el problema a resolver
+                JOptionPane.showMessageDialog(this,"Error al actualizar los datos - "+ e); //mensaje de error y el problema;
             }
         }
     }//GEN-LAST:event_btnmodActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        int llavero = evt.getKeyChar(); //condicion para que solo admita caracteres alfabeticos
+        
+        boolean mayusc = llavero >= 65 && llavero <= 90;
+        boolean minusc = llavero >= 97 && llavero <= 122;
+        boolean espacio = llavero == 32;
+        
+        if(!(mayusc || minusc || espacio)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
+        int llavero = evt.getKeyChar(); //condicion para que solo admita caracteres numericos
+        
+        boolean num = llavero >= 48 && llavero <= 57;
+        
+        if(!num){
+            evt.consume();
+        }
+        
+        if(txtDNI.getText().trim().length() == 8){ //limita cantidad de caracteres para usar
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDNIKeyTyped
+
+    private void txtApPatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApPatKeyTyped
+        int llavero = evt.getKeyChar(); //condicion para que solo admita caracteres alfabeticos
+        
+        boolean mayusc = llavero >= 65 && llavero <= 90;
+        boolean minusc = llavero >= 97 && llavero <= 122;
+        boolean espacio = llavero == 32;
+        
+        if(!(mayusc || minusc || espacio)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtApPatKeyTyped
+
+    private void txtApMatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApMatKeyTyped
+        int llavero = evt.getKeyChar(); //condicion para que solo admita caracteres alfabeticos
+        
+        boolean mayusc = llavero >= 65 && llavero <= 90;
+        boolean minusc = llavero >= 97 && llavero <= 122;
+        boolean espacio = llavero == 32;
+        
+        if(!(mayusc || minusc || espacio)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtApMatKeyTyped
+
+    private void txtTelfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelfKeyTyped
+        int llavero = evt.getKeyChar(); //condicion para que solo admita caracteres numericos
+        
+        boolean num = llavero >= 48 && llavero <= 57;
+        
+        if(!num){
+            evt.consume();
+        }
+        
+        if(txtDNI.getText().trim().length() == 9){ //limita cantidad de caracteres para usar
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelfKeyTyped
+
+    private void txtGenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGenKeyTyped
+        int llavero = evt.getKeyChar(); //condicion para que solo admita caracteres alfabeticos
+        
+        boolean letM = llavero == 77 || llavero == 109;
+        boolean letF = llavero == 70 || llavero == 102; 
+        
+        if(!(letM || letF)){
+            evt.consume();
+        }
+        
+        if(txtGen.getText().trim().length() == 1){ //limita cantidad de caracteres para usar
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtGenKeyTyped
 
     public void MostrarDatos(){ //Para editar los nombres de cada columna de la tabla
         DefaultTableModel MiTabla = (DefaultTableModel)tblDatos.getModel();
@@ -462,6 +584,7 @@ public class frmRegistrar extends javax.swing.JFrame {
     private javax.swing.JButton btnRegMod;
     private javax.swing.JButton btnmod;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
